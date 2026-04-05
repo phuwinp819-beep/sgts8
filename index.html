@@ -5,19 +5,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SGT8 Event Helper Recruitment</title>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
     :root {
       --blue: #0000AE;
       --white: #F5F1F2;
       --dark: #020202;
       --silver: #C0C0C0;
-      --title-font: "Redaction", "REDACTION", "Arial Black", Impact, sans-serif;
+      --pixel-font: "Silkscreen", monospace;
     }
 
     * {
-      box-sizing: border-box
+      box-sizing: border-box;
     }
 
     html,
@@ -32,10 +33,10 @@
     }
 
     body {
-      font-family: 'Press Start 2P', monospace;
+      font-family: var(--pixel-font);
+      color: var(--dark);
       -webkit-font-smoothing: none;
       text-rendering: geometricPrecision;
-      color: var(--dark);
     }
 
     .app {
@@ -52,7 +53,7 @@
     .frame {
       width: min(94vw, 1100px);
       aspect-ratio: 4/3;
-      border: 4px solid var(--blue);
+      border: 4px solid var(--silver);
       border-radius: 28px;
       padding: 18px;
       background:
@@ -60,12 +61,11 @@
           rgba(192, 192, 192, .96),
           rgba(245, 241, 242, .98) 34%,
           rgba(192, 192, 192, .92) 70%,
-          rgba(2, 2, 2, .14));
+          rgba(2, 2, 2, .12));
       box-shadow:
-        0 26px 52px rgba(2, 2, 2, .34),
-        0 0 0 10px rgba(0, 0, 174, .08),
+        0 26px 52px rgba(2, 2, 2, .28),
         inset 0 2px 0 rgba(245, 241, 242, .72),
-        inset 0 -4px 0 rgba(2, 2, 2, .12);
+        inset 0 -4px 0 rgba(2, 2, 2, .08);
     }
 
     .screen {
@@ -73,14 +73,13 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      border-radius: 20px;
+      border-radius: 18px;
       background:
         linear-gradient(180deg, rgba(245, 241, 242, .98), rgba(192, 192, 192, .18) 120%),
         var(--white);
       box-shadow:
-        inset 0 0 0 4px rgba(2, 2, 2, .18),
-        inset 0 0 0 10px rgba(0, 0, 174, .08),
-        inset 0 0 50px rgba(0, 0, 174, .10);
+        inset 0 0 0 4px rgba(192, 192, 192, .75),
+        inset 0 0 0 1px rgba(255, 255, 255, .6);
     }
 
     .screen::before {
@@ -90,26 +89,10 @@
       z-index: 25;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(245, 241, 242, .08), transparent 10%, transparent 90%, rgba(245, 241, 242, .08)),
-        radial-gradient(circle at 14% 18%, rgba(245, 241, 242, .18), transparent 16%),
-        radial-gradient(circle at 82% 78%, rgba(0, 0, 174, .08), transparent 18%),
-        radial-gradient(circle at 50% 0%, rgba(0, 0, 174, .10), transparent 28%);
-      mix-blend-mode: screen;
-    }
-
-    .screen::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 26;
-      pointer-events: none;
-      opacity: .28;
-      background: repeating-linear-gradient(to bottom,
-          rgba(245, 241, 242, 0) 0px,
-          rgba(245, 241, 242, 0) 3px,
-          rgba(245, 241, 242, .08) 4px,
-          rgba(0, 0, 174, .03) 5px,
-          rgba(2, 2, 2, .03) 6px);
+        linear-gradient(rgba(2, 2, 2, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 2, 2, .04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: .6;
     }
 
     .logo-wrap {
@@ -125,8 +108,8 @@
     }
 
     .logo-box {
-      width: 62px;
-      height: 62px;
+      width: 58px;
+      height: 58px;
       display: block;
     }
 
@@ -135,42 +118,6 @@
       height: 100%;
       object-fit: contain;
       display: block;
-    }
-
-    .pixel-corner {
-      position: absolute;
-      width: 36px;
-      height: 36px;
-      z-index: 18;
-      opacity: .9;
-      pointer-events: none;
-      background:
-        linear-gradient(var(--blue), var(--blue)) 0 0/12px 4px no-repeat,
-        linear-gradient(var(--blue), var(--blue)) 0 0/4px 12px no-repeat,
-        linear-gradient(var(--blue), var(--blue)) 12px 12px/4px 4px no-repeat;
-    }
-
-    .pixel-corner.tr {
-      top: 18px;
-      right: 92px;
-      transform: scaleX(-1)
-    }
-
-    .pixel-corner.tl {
-      top: 18px;
-      left: 18px
-    }
-
-    .pixel-corner.bl {
-      bottom: 18px;
-      left: 18px;
-      transform: scaleY(-1)
-    }
-
-    .pixel-corner.br {
-      bottom: 18px;
-      right: 18px;
-      transform: scale(-1)
     }
 
     .stage {
@@ -192,17 +139,18 @@
 
     .grid-bg {
       background:
-        linear-gradient(rgba(0, 0, 174, .10) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(0, 0, 174, .10) 2px, transparent 2px),
-        radial-gradient(circle at top, rgba(0, 0, 174, .08), transparent 32%),
-        linear-gradient(180deg, rgba(245, 241, 242, .98), rgba(192, 192, 192, .18));
-      background-size: 64px 64px, 64px 64px, 100% 100%, 100% 100%;
+        linear-gradient(rgba(2, 2, 2, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 2, 2, .06) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(245, 241, 242, .98), rgba(192, 192, 192, .16));
+      background-size: 60px 60px, 60px 60px, 100% 100%;
     }
 
     .plain-bg {
       background:
-        radial-gradient(circle at 50% 0%, rgba(0, 0, 174, .08), transparent 30%),
-        linear-gradient(180deg, rgba(245, 241, 242, .98), rgba(192, 192, 192, .18));
+        linear-gradient(rgba(2, 2, 2, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 2, 2, .05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(245, 241, 242, .98), rgba(192, 192, 192, .16));
+      background-size: 60px 60px, 60px 60px, 100% 100%;
     }
 
     .hud {
@@ -211,23 +159,26 @@
       align-items: flex-start;
       gap: 18px;
       min-height: 48px;
-      padding-right: 86px;
+      padding-right: 78px;
       position: relative;
       z-index: 30;
     }
 
     .score {
-      color: var(--blue);
+      font-family: var(--pixel-font);
+      font-weight: 700;
+      color: var(--dark);
       text-transform: uppercase;
       font-size: clamp(10px, 1.05vw, 14px);
       line-height: 1.8;
-      text-shadow: 2px 2px 0 rgba(2, 2, 2, .10);
+      text-shadow: 2px 0 0 rgba(0, 0, 174, .18);
     }
 
     .hud-right {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       text-align: right;
-      color: var(--dark);
-      opacity: .78;
+      color: var(--blue);
       text-transform: uppercase;
       font-size: clamp(8px, .9vw, 11px);
       line-height: 1.8;
@@ -244,43 +195,51 @@
       z-index: 30;
     }
 
-    .title-kicker,
     .big,
-    .select-title,
     .loading-icon,
     .final-title,
     .final-cta {
-      font-family: var(--title-font);
-      letter-spacing: .04em;
+      font-family: var(--pixel-font);
+      font-weight: 700;
+      letter-spacing: .03em;
       text-transform: uppercase;
+      color: var(--dark);
+      text-shadow:
+        4px 0 0 rgba(0, 0, 174, .18),
+        0 4px 0 rgba(0, 0, 174, .08);
     }
 
     .big {
       font-size: clamp(28px, 4vw, 58px);
       line-height: 1.05;
-      color: var(--blue);
-      text-shadow:
-        4px 4px 0 rgba(2, 2, 2, .18),
-        0 0 18px rgba(0, 0, 174, .08);
+    }
+
+    .start-big {
+      font-size: clamp(62px, 9vw, 132px);
+      line-height: .95;
     }
 
     .medium {
-      font-size: clamp(11px, 1.3vw, 18px);
+      font-family: var(--pixel-font);
+      font-weight: 400;
+      font-size: clamp(11px, 1.25vw, 17px);
       line-height: 1.9;
       color: var(--dark);
       text-transform: uppercase;
     }
 
     .subtle {
+      font-family: var(--pixel-font);
+      font-weight: 400;
       font-size: clamp(9px, .95vw, 12px);
       line-height: 1.9;
       color: var(--dark);
-      opacity: .78;
+      opacity: .72;
       text-transform: uppercase;
     }
 
     .blink {
-      animation: blink .82s steps(1, end) infinite
+      animation: blink .82s steps(1, end) infinite;
     }
 
     .glitch {
@@ -297,15 +256,15 @@
     }
 
     .glitch::before {
-      color: var(--silver);
-      transform: translate(-3px, 0);
-      opacity: .85;
+      color: rgba(0, 0, 174, .25);
+      transform: translate(3px, 0);
+      opacity: .8;
     }
 
     .glitch::after {
-      color: var(--dark);
-      transform: translate(3px, 0);
-      opacity: .5;
+      color: rgba(2, 2, 2, .2);
+      transform: translate(-2px, 0);
+      opacity: .7;
     }
 
     .yesno {
@@ -320,6 +279,8 @@
     }
 
     .choice {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       position: relative;
       padding: 12px 18px;
       cursor: pointer;
@@ -333,7 +294,7 @@
       opacity: .82;
       user-select: none;
       border: 3px solid rgba(0, 0, 174, .28);
-      background: rgba(245, 241, 242, .58);
+      background: rgba(245, 241, 242, .7);
       box-shadow: 0 0 0 0 rgba(0, 0, 174, 0);
     }
 
@@ -349,7 +310,7 @@
       border-color: var(--blue);
       transform: translateY(-2px) scale(1.03);
       box-shadow:
-        0 10px 24px rgba(0, 0, 174, .24),
+        0 10px 24px rgba(0, 0, 174, .18),
         inset 0 0 0 2px rgba(245, 241, 242, .18);
     }
 
@@ -365,11 +326,11 @@
     }
 
     .start-yes-go {
-      animation: startYesGo .38s ease forwards
+      animation: startYesGo .38s ease forwards;
     }
 
     .start-nope {
-      animation: startNope .45s ease
+      animation: startNope .45s ease;
     }
 
     .loading-wrap {
@@ -384,23 +345,24 @@
 
     .loading-top,
     .loading-box {
-      border: 4px solid var(--blue);
+      border: 4px solid var(--silver);
       color: var(--dark);
       background:
         linear-gradient(180deg, rgba(245, 241, 242, .96), rgba(192, 192, 192, .20));
       box-shadow:
         0 12px 24px rgba(2, 2, 2, .08),
-        inset 0 0 0 3px rgba(0, 0, 174, .06);
+        inset 0 0 0 2px rgba(255, 255, 255, .55);
     }
 
     .loading-top {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 12px 16px;
       font-size: clamp(10px, 1vw, 14px);
       text-transform: uppercase;
-      text-shadow: 1px 1px 0 rgba(192, 192, 192, .35);
     }
 
     .loading-box {
@@ -417,8 +379,6 @@
       font-size: clamp(24px, 2.4vw, 36px);
       line-height: 1.2;
       text-align: center;
-      color: var(--blue);
-      text-shadow: 2px 2px 0 rgba(2, 2, 2, .10);
     }
 
     .dots {
@@ -454,34 +414,18 @@
     }
 
     .select-title {
-      color: var(--blue);
-      font-size: clamp(18px, 2vw, 32px);
-      line-height: 1.15;
-      position: relative;
-      text-shadow: 3px 3px 0 rgba(2, 2, 2, .12);
-    }
-
-    .select-title::before,
-    .select-title::after {
-      content: attr(data-text);
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .select-title::before {
-      color: var(--silver);
-      transform: translate(-2px, 0);
-      opacity: .78;
-    }
-
-    .select-title::after {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       color: var(--dark);
-      transform: translate(2px, 0);
-      opacity: .28;
+      font-size: clamp(18px, 2vw, 30px);
+      line-height: 1.15;
+      text-transform: uppercase;
+      text-shadow: 3px 0 0 rgba(0, 0, 174, .16);
     }
 
     .select-sub {
+      font-family: var(--pixel-font);
+      font-weight: 400;
       color: var(--dark);
       font-size: clamp(10px, 1vw, 12px);
       text-transform: uppercase;
@@ -548,10 +492,12 @@
     }
 
     .perk-card.dim {
-      opacity: .58
+      opacity: .58;
     }
 
     .perk-num {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       width: 100%;
       text-align: left;
       font-size: clamp(10px, 1vw, 12px);
@@ -576,6 +522,8 @@
       place-items: center;
       border: 4px solid currentColor;
       box-shadow: inset 0 0 0 4px rgba(245, 241, 242, .14);
+      font-family: var(--pixel-font);
+      font-weight: 700;
       font-size: clamp(18px, 1.7vw, 24px);
       line-height: 1.4;
       text-transform: uppercase;
@@ -585,7 +533,7 @@
     }
 
     .perk-card.selected .pixel-badge {
-      transform: scale(1.04)
+      transform: scale(1.04);
     }
 
     .perk-card:nth-child(2) .pixel-badge {
@@ -594,6 +542,8 @@
     }
 
     .perk-name {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       font-size: clamp(11px, 1vw, 14px);
       line-height: 1.8;
       text-transform: uppercase;
@@ -602,6 +552,8 @@
 
     .info-line,
     .action-line {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       text-align: center;
       color: var(--dark);
       font-size: clamp(10px, 1vw, 14px);
@@ -613,11 +565,11 @@
     }
 
     .info-line {
-      margin-top: 18px
+      margin-top: 18px;
     }
 
     .action-line {
-      margin-top: 12px
+      margin-top: 12px;
     }
 
     .final-stage {
@@ -636,13 +588,13 @@
     }
 
     .final-title {
-      color: var(--blue);
-      font-size: clamp(24px, 3vw, 48px);
+      font-size: clamp(28px, 3.2vw, 54px);
       line-height: 1.05;
-      text-shadow: 4px 4px 0 rgba(2, 2, 2, .18);
     }
 
     .final-picked {
+      font-family: var(--pixel-font);
+      font-weight: 700;
       color: var(--dark);
       font-size: clamp(10px, 1.1vw, 16px);
       line-height: 1.9;
@@ -653,6 +605,7 @@
       color: var(--blue);
       font-size: clamp(18px, 2vw, 32px);
       line-height: 1.05;
+      text-shadow: none;
     }
 
     .form-link-btn {
@@ -664,6 +617,8 @@
       color: var(--white);
       text-decoration: none;
       text-transform: uppercase;
+      font-family: var(--pixel-font);
+      font-weight: 700;
       font-size: clamp(10px, 1vw, 14px);
       line-height: 1.6;
       box-shadow: 4px 4px 0 rgba(2, 2, 2, .18);
@@ -676,6 +631,8 @@
     }
 
     .final-note {
+      font-family: var(--pixel-font);
+      font-weight: 400;
       font-size: clamp(9px, 0.95vw, 12px);
       line-height: 1.8;
       color: var(--dark);
@@ -684,129 +641,125 @@
     }
 
     .final-countdown {
-      color: var(--blue)
+      color: var(--blue);
     }
 
     .cursor {
       display: inline-block;
-      animation: blink .82s steps(1, end) infinite
+      animation: blink .82s steps(1, end) infinite;
     }
 
     @keyframes blink {
 
       0%,
       49% {
-        opacity: 1
+        opacity: 1;
       }
 
       50%,
       100% {
-        opacity: 0
+        opacity: 0;
       }
     }
 
     @keyframes jitter {
       0% {
-        transform: translate(0, 0)
+        transform: translate(0, 0);
       }
 
       25% {
-        transform: translate(-1px, 0)
+        transform: translate(-1px, 0);
       }
 
       50% {
-        transform: translate(1px, 0)
+        transform: translate(1px, 0);
       }
 
       75% {
-        transform: translate(-1px, 1px)
+        transform: translate(-1px, 1px);
       }
 
       100% {
-        transform: translate(0, 0)
+        transform: translate(0, 0);
       }
     }
 
     @keyframes nudge {
       from {
-        transform: translateX(0)
+        transform: translateX(0);
       }
 
       to {
-        transform: translateX(4px)
+        transform: translateX(4px);
       }
     }
 
     @keyframes startYesGo {
       0% {
-        transform: scale(1)
+        transform: scale(1);
       }
 
       45% {
-        transform: scale(1.08)
+        transform: scale(1.08);
       }
 
       100% {
         transform: scale(.96);
-        opacity: 0
+        opacity: 0;
       }
     }
 
     @keyframes startNope {
       0% {
-        transform: translateX(0)
+        transform: translateX(0);
       }
 
       20% {
-        transform: translateX(-6px)
+        transform: translateX(-6px);
       }
 
       40% {
-        transform: translateX(6px)
+        transform: translateX(6px);
       }
 
       60% {
-        transform: translateX(-4px)
+        transform: translateX(-4px);
       }
 
       80% {
-        transform: translateX(4px)
+        transform: translateX(4px);
       }
 
       100% {
-        transform: translateX(0)
+        transform: translateX(0);
       }
     }
 
     @media (max-width:900px) {
       .frame {
-        width: min(96vw, 960px)
+        width: min(96vw, 960px);
       }
 
       .perk-card {
-        min-height: 240px
+        min-height: 240px;
       }
 
       .pixel-badge {
         min-width: 88px;
-        min-height: 88px
+        min-height: 88px;
       }
 
       .title-row {
-        padding-right: 74px
+        padding-right: 74px;
       }
 
       .logo-box {
         width: 54px;
-        height: 54px
+        height: 54px;
       }
 
       .hud {
-        padding-right: 74px
-      }
-
-      .pixel-corner.tr {
-        right: 82px
+        padding-right: 74px;
       }
     }
 
@@ -814,26 +767,26 @@
 
       html,
       body {
-        overflow: auto
+        overflow: auto;
       }
 
       .app {
         height: auto;
         min-height: 100vh;
-        padding: 14px
+        padding: 14px;
       }
 
       .frame {
         aspect-ratio: auto;
-        min-height: 92vh
+        min-height: 92vh;
       }
 
       .perk-grid {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
       }
 
       .perk-card {
-        min-height: unset
+        min-height: unset;
       }
 
       .title-row {
@@ -843,20 +796,16 @@
       }
 
       .select-sub {
-        text-align: left
+        text-align: left;
       }
 
       .loading-box {
         grid-template-columns: 1fr;
-        min-height: 230px
+        min-height: 230px;
       }
 
       .hud {
-        padding-right: 68px
-      }
-
-      .pixel-corner.tr {
-        right: 76px
+        padding-right: 68px;
       }
     }
 
@@ -877,10 +826,6 @@
   <div class="app">
     <div class="frame">
       <div class="screen">
-        <span class="pixel-corner tl"></span>
-        <span class="pixel-corner tr"></span>
-        <span class="pixel-corner bl"></span>
-        <span class="pixel-corner br"></span>
 
         <div class="logo-wrap">
           <div class="logo-box">
@@ -894,7 +839,7 @@
             <div class="hud-right">SGT8 SYSTEM<br>RE:VELATION MODE</div>
           </div>
           <div class="center">
-            <div class="big glitch" id="bootText" data-text="BOOTING...">BOOTING...</div>
+            <div class="big glitch" data-text="BOOTING...">BOOTING...</div>
             <div class="medium">INITIALIZING EVENT HELPER SYSTEM</div>
             <div class="subtle blink">PLEASE WAIT</div>
           </div>
@@ -907,7 +852,7 @@
           </div>
 
           <div class="center">
-            <div class="big" id="startTitle">START</div>
+            <div class="big start-big" id="startTitle">START</div>
             <div class="medium">ARE YOU READY?</div>
 
             <div class="yesno" id="startChoices">
@@ -941,7 +886,7 @@
 
         <section class="stage grid-bg" id="stage-select">
           <div class="title-row">
-            <div class="select-title" data-text="UNLOCK YOUR PERKS">UNLOCK YOUR PERKS</div>
+            <div class="select-title">UNLOCK YOUR PERKS</div>
             <div class="select-sub">CLICK A CARD<br>OR USE ← → ENTER</div>
           </div>
 
@@ -981,7 +926,7 @@
         <section class="stage grid-bg final-stage" id="stage-final">
           <div class="hud">
             <div class="score">MISSION CLEAR</div>
-            <div class="hud-right">FINAL STAGE<br>READY</div>
+            <div class="hud-right">SGT8</div>
           </div>
 
           <div class="final-center">
@@ -989,6 +934,7 @@
             <div class="final-picked" id="selectedPerkText">PERK SELECTED // HANDS-ON EXPERIENCE</div>
             <div class="final-cta">GOOGLE FORM UNLOCKED<span class="cursor">_</span></div>
             <div class="medium" id="finalStatus">OPEN GOOGLE FORM OR WAIT FOR AUTO REDIRECT</div>
+
             <a id="formLinkBtn" class="form-link-btn" href="https://forms.gle/BZii4wpK4ABPotxP8" target="_blank"
               rel="noopener noreferrer">
               OPEN GOOGLE FORM
@@ -1004,39 +950,39 @@
   </div>
 
   <script>
-    const GOOGLE_FORM_URL = 'https://forms.gle/BZii4wpK4ABPotxP8';
+    const GOOGLE_FORM_URL = "https://forms.gle/BZii4wpK4ABPotxP8";
 
     const stages = {
-      boot: document.getElementById('stage-boot'),
-      start: document.getElementById('stage-start'),
-      loading: document.getElementById('stage-loading'),
-      select: document.getElementById('stage-select'),
-      final: document.getElementById('stage-final')
+      boot: document.getElementById("stage-boot"),
+      start: document.getElementById("stage-start"),
+      loading: document.getElementById("stage-loading"),
+      select: document.getElementById("stage-select"),
+      final: document.getElementById("stage-final")
     };
 
-    const loadingDots = Array.from(document.querySelectorAll('#loadingDots .dot'));
-    const perkCards = Array.from(document.querySelectorAll('.perk-card'));
-    const perkInfo = document.getElementById('perkInfo');
-    const selectedPerkText = document.getElementById('selectedPerkText');
-    const startChoices = Array.from(document.querySelectorAll('.choice'));
-    const startMessage = document.getElementById('startMessage');
-    const formLinkBtn = document.getElementById('formLinkBtn');
-    const countdownEl = document.getElementById('countdown');
-    const countdownWrap = document.getElementById('countdownWrap');
-    const finalStatus = document.getElementById('finalStatus');
+    const loadingDots = Array.from(document.querySelectorAll("#loadingDots .dot"));
+    const perkCards = Array.from(document.querySelectorAll(".perk-card"));
+    const perkInfo = document.getElementById("perkInfo");
+    const selectedPerkText = document.getElementById("selectedPerkText");
+    const startChoices = Array.from(document.querySelectorAll(".choice"));
+    const startMessage = document.getElementById("startMessage");
+    const formLinkBtn = document.getElementById("formLinkBtn");
+    const countdownEl = document.getElementById("countdown");
+    const countdownWrap = document.getElementById("countdownWrap");
+    const finalStatus = document.getElementById("finalStatus");
 
     const perkData = [
       {
-        short: 'HANDS-ON EXPERIENCE',
-        copy: 'REAL EVENTS // REAL EXPERIENCE'
+        short: "HANDS-ON EXPERIENCE",
+        copy: "REAL EVENTS // REAL EXPERIENCE"
       },
       {
-        short: 'MEANINGFUL CONNECTIONS',
-        copy: 'MEET PEOPLE // BUILD YOUR NETWORK'
+        short: "MEANINGFUL CONNECTIONS",
+        copy: "MEET PEOPLE // BUILD YOUR NETWORK"
       },
       {
-        short: 'FUTURE GROWTH',
-        copy: 'LEVEL UP YOUR SKILLS AND CONFIDENCE'
+        short: "FUTURE GROWTH",
+        copy: "LEVEL UP YOUR SKILLS AND CONFIDENCE"
       }
     ];
 
@@ -1052,11 +998,15 @@
 
     function unlockAudio() {
       if (soundReady) return;
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      soundReady = true;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        soundReady = true;
+      } catch (e) {
+        soundReady = false;
+      }
     }
 
-    function tone(freq, duration, type = 'square', volume = 0.03, delay = 0) {
+    function tone(freq, duration, type = "square", volume = 0.03, delay = 0) {
       if (!soundReady || !audioCtx) return;
       const now = audioCtx.currentTime + delay;
       const osc = audioCtx.createOscillator();
@@ -1075,30 +1025,30 @@
     }
 
     function sfxBoot() {
-      tone(140, 0.08, 'square', 0.025, 0.00);
-      tone(180, 0.08, 'square', 0.025, 0.10);
-      tone(220, 0.10, 'square', 0.025, 0.20);
+      tone(140, 0.08, "square", 0.025, 0.00);
+      tone(180, 0.08, "square", 0.025, 0.10);
+      tone(220, 0.10, "square", 0.025, 0.20);
     }
 
     function sfxMove() {
-      tone(420, 0.05, 'square', 0.02);
+      tone(420, 0.05, "square", 0.02);
     }
 
     function sfxSelect() {
-      tone(520, 0.06, 'square', 0.025, 0.00);
-      tone(660, 0.08, 'square', 0.025, 0.07);
+      tone(520, 0.06, "square", 0.025, 0.00);
+      tone(660, 0.08, "square", 0.025, 0.07);
     }
 
     function sfxLoading() {
-      tone(300, 0.04, 'square', 0.015, 0.00);
-      tone(360, 0.04, 'square', 0.015, 0.08);
-      tone(420, 0.04, 'square', 0.015, 0.16);
+      tone(300, 0.04, "square", 0.015, 0.00);
+      tone(360, 0.04, "square", 0.015, 0.08);
+      tone(420, 0.04, "square", 0.015, 0.16);
     }
 
     function sfxWin() {
-      tone(523.25, 0.08, 'square', 0.03, 0.00);
-      tone(659.25, 0.08, 'square', 0.03, 0.10);
-      tone(783.99, 0.12, 'square', 0.03, 0.20);
+      tone(523.25, 0.08, "square", 0.03, 0.00);
+      tone(659.25, 0.08, "square", 0.03, 0.10);
+      tone(783.99, 0.12, "square", 0.03, 0.20);
     }
 
     function clearRedirects() {
@@ -1114,84 +1064,83 @@
     }
 
     function showStage(name) {
-      Object.values(stages).forEach((stage) => stage.classList.remove('active'));
-      stages[name].classList.add('active');
+      Object.values(stages).forEach((stage) => stage.classList.remove("active"));
+      stages[name].classList.add("active");
     }
 
     function setPerk(index) {
-      if (currentPerk !== index && stages.select.classList.contains('active')) {
+      if (currentPerk !== index && stages.select.classList.contains("active")) {
         sfxMove();
       }
 
       currentPerk = index;
       perkCards.forEach((card, i) => {
-        card.classList.remove('selected', 'dim');
-        if (i !== index) card.classList.add('dim');
+        card.classList.remove("selected", "dim");
+        if (i !== index) card.classList.add("dim");
       });
-      perkCards[index].classList.add('selected');
+      perkCards[index].classList.add("selected");
       perkInfo.textContent = perkData[index].copy;
     }
 
     function setStartChoice(index) {
       startChoice = index;
-      startChoices.forEach((choice) => choice.classList.remove('selected'));
-      startChoices[index].classList.add('selected');
-
-      startMessage.textContent = index === 0 ? 'YES // LETS GO' : 'NO // YOU SURE?';
+      startChoices.forEach((choice) => choice.classList.remove("selected"));
+      startChoices[index].classList.add("selected");
+      startMessage.textContent = index === 0 ? "YES // LETS GO" : "NO // YOU SURE?";
     }
 
     function goToLoading() {
-      if (!stages.start.classList.contains('active')) return;
+      if (!stages.start.classList.contains("active")) return;
 
-      showStage('loading');
+      showStage("loading");
       sfxLoading();
 
       let idx = 0;
       loadingDots.forEach((dot, i) => {
-        dot.classList.toggle('on', i === 0);
+        dot.classList.toggle("on", i === 0);
       });
 
       clearInterval(loadingInterval);
       loadingInterval = setInterval(() => {
         loadingDots.forEach((dot, i) => {
-          dot.classList.toggle('on', i <= idx);
+          dot.classList.toggle("on", i <= idx);
         });
         idx = (idx + 1) % loadingDots.length;
       }, 170);
 
       loadingTimer = setTimeout(() => {
         clearInterval(loadingInterval);
-        showStage('select');
+        showStage("select");
         setPerk(currentPerk);
       }, 1500);
     }
 
     function confirmStartChoice() {
-      if (!stages.start.classList.contains('active')) return;
+      if (!stages.start.classList.contains("active")) return;
 
       unlockAudio();
       const selected = startChoices[startChoice];
 
       if (startChoice === 0) {
         sfxSelect();
-        startMessage.textContent = 'LOADING PLAYER DATA...';
-        selected.classList.remove('start-nope');
+        startMessage.textContent = "LOADING PLAYER DATA...";
+        selected.classList.remove("start-nope");
         void selected.offsetWidth;
-        selected.classList.add('start-yes-go');
+        selected.classList.add("start-yes-go");
 
         setTimeout(() => {
-          selected.classList.remove('start-yes-go');
+          selected.classList.remove("start-yes-go");
           goToLoading();
         }, 380);
       } else {
         sfxMove();
-        startMessage.textContent = 'EH DONT RUN... CHOOSE YES';
-        selected.classList.remove('start-nope');
+        startMessage.textContent = "EH DONT RUN... CHOOSE YES";
+        selected.classList.remove("start-nope");
         void selected.offsetWidth;
-        selected.classList.add('start-nope');
+        selected.classList.add("start-nope");
 
         setTimeout(() => {
-          selected.classList.remove('start-nope');
+          selected.classList.remove("start-nope");
           setStartChoice(0);
         }, 520);
       }
@@ -1200,8 +1149,8 @@
     function startFinalRedirect() {
       clearRedirects();
       formLinkBtn.href = GOOGLE_FORM_URL;
-      finalStatus.textContent = 'OPEN GOOGLE FORM OR WAIT FOR AUTO REDIRECT';
-      countdownWrap.style.display = 'block';
+      finalStatus.textContent = "OPEN GOOGLE FORM OR WAIT FOR AUTO REDIRECT";
+      countdownWrap.style.display = "block";
 
       let seconds = 3;
       countdownEl.textContent = seconds;
@@ -1227,14 +1176,14 @@
       selectedPerkText.textContent = `PERK SELECTED // ${perkData[index].short}`;
 
       setTimeout(() => {
-        showStage('final');
+        showStage("final");
         sfxWin();
         startFinalRedirect();
       }, 260);
     }
 
     startChoices.forEach((choice, index) => {
-      choice.addEventListener('click', () => {
+      choice.addEventListener("click", () => {
         setStartChoice(index);
         confirmStartChoice();
       });
@@ -1243,42 +1192,42 @@
     perkCards.forEach((card) => {
       const index = Number(card.dataset.index);
 
-      card.addEventListener('click', () => {
+      card.addEventListener("click", () => {
         lockPerk(index);
       });
 
-      card.addEventListener('mouseenter', () => {
-        if (stages.select.classList.contains('active')) {
+      card.addEventListener("mouseenter", () => {
+        if (stages.select.classList.contains("active")) {
           setPerk(index);
         }
       });
 
-      card.addEventListener('focus', () => {
-        if (stages.select.classList.contains('active')) {
+      card.addEventListener("focus", () => {
+        if (stages.select.classList.contains("active")) {
           setPerk(index);
         }
       });
     });
 
-    window.addEventListener('keydown', (e) => {
-      if (stages.start.classList.contains('active')) {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+    window.addEventListener("keydown", (e) => {
+      if (stages.start.classList.contains("active")) {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
           unlockAudio();
           sfxMove();
           setStartChoice(startChoice === 0 ? 1 : 0);
-        } else if (e.key === 'Enter' || e.key === ' ') {
+        } else if (e.key === "Enter" || e.key === " ") {
           confirmStartChoice();
         }
         return;
       }
 
-      if (!stages.select.classList.contains('active')) return;
+      if (!stages.select.classList.contains("active")) return;
 
-      if (e.key === 'ArrowRight') {
+      if (e.key === "ArrowRight") {
         setPerk((currentPerk + 1) % perkCards.length);
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === "ArrowLeft") {
         setPerk((currentPerk - 1 + perkCards.length) % perkCards.length);
-      } else if (e.key === 'Enter' || e.key.toLowerCase() === 'a') {
+      } else if (e.key === "Enter" || e.key.toLowerCase() === "a") {
         lockPerk(currentPerk);
       }
     });
@@ -1288,19 +1237,19 @@
       currentPerk = 0;
       setPerk(0);
       setStartChoice(0);
-      selectedPerkText.textContent = 'PERK SELECTED // HANDS-ON EXPERIENCE';
-      showStage('boot');
+      selectedPerkText.textContent = "PERK SELECTED // HANDS-ON EXPERIENCE";
+      showStage("boot");
 
       unlockAudio();
       sfxBoot();
 
       bootTimer = setTimeout(() => {
-        showStage('start');
+        showStage("start");
       }, 1700);
     }
 
-    window.addEventListener('load', startSequence);
-    window.addEventListener('pageshow', startSequence);
+    window.addEventListener("load", startSequence);
+    window.addEventListener("pageshow", startSequence);
   </script>
 </body>
 
