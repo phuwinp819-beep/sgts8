@@ -3,9 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>SGT8 Event Helper Recruitment</title>
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
@@ -15,6 +14,10 @@
       --dark: #020202;
       --silver: #C0C0C0;
       --pixel-font: "Silkscreen", monospace;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
     }
 
     * {
@@ -40,12 +43,20 @@
       text-rendering: geometricPrecision;
     }
 
+    button,
+    a,
+    [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     .app {
-      width: 100%;
+      width: 100vw;
       min-height: 100dvh;
+      height: auto;
       display: grid;
       place-items: center;
-      padding: 20px;
+      padding:
+        calc(20px + var(--safe-top)) calc(20px + var(--safe-right)) calc(20px + var(--safe-bottom)) calc(20px + var(--safe-left));
       background:
         radial-gradient(circle at 50% 0%, rgba(0, 0, 174, .08), transparent 30%),
         linear-gradient(180deg, rgba(192, 192, 192, .52), var(--white) 28%, rgba(192, 192, 192, .32));
@@ -53,7 +64,8 @@
 
     .frame {
       width: min(94vw, 1100px);
-      aspect-ratio: 4/3;
+      aspect-ratio: 4 / 3;
+      max-height: 96dvh;
       border: 4px solid var(--silver);
       border-radius: 28px;
       padding: 18px;
@@ -73,9 +85,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 100%;
       overflow: hidden;
-      isolation: isolate;
       border-radius: 18px;
       background:
         linear-gradient(180deg, rgba(245, 241, 242, .98), rgba(192, 192, 192, .18) 120%),
@@ -89,7 +99,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: 25;
       pointer-events: none;
       background:
         linear-gradient(rgba(2, 2, 2, .04) 1px, transparent 1px),
@@ -102,7 +112,7 @@
       position: absolute;
       top: 16px;
       right: 18px;
-      z-index: 3;
+      z-index: 60;
       padding: 0;
       border: 0;
       background: transparent;
@@ -126,14 +136,17 @@
     .stage {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 5;
       padding: 28px;
-      display: none;
+      display: flex;
       flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s linear;
     }
 
     .stage.active {
-      display: flex;
+      opacity: 1;
       pointer-events: auto;
     }
 
@@ -464,6 +477,7 @@
       box-shadow:
         0 12px 28px rgba(2, 2, 2, .08),
         inset 0 0 0 2px rgba(245, 241, 242, .20);
+      outline: none;
     }
 
     .perk-card:nth-child(1) {
@@ -482,6 +496,10 @@
     .perk-card:nth-child(3) {
       background: linear-gradient(180deg, rgba(192, 192, 192, .84), rgba(245, 241, 242, .94));
       color: var(--dark);
+    }
+
+    .perk-card:focus-visible {
+      box-shadow: 0 0 0 4px rgba(0, 0, 174, .18), 0 14px 30px rgba(2, 2, 2, .08);
     }
 
     .perk-card.selected {
@@ -742,7 +760,7 @@
       }
     }
 
-    @media (max-width:900px) {
+    @media (max-width: 900px) {
       .frame {
         width: min(96vw, 960px);
       }
@@ -770,21 +788,28 @@
       }
     }
 
-    @media (max-width:720px) {
-
-      html,
-      body {
-        overflow: auto;
-      }
-
+    @media (max-width: 720px) {
       .app {
         min-height: 100dvh;
-        padding: 14px;
+        padding:
+          calc(14px + var(--safe-top)) calc(14px + var(--safe-right)) calc(14px + var(--safe-bottom)) calc(14px + var(--safe-left));
       }
 
       .frame {
+        width: 100%;
         aspect-ratio: auto;
-        min-height: 92dvh;
+        min-height: calc(92dvh - 28px);
+        max-height: none;
+        padding: 12px;
+      }
+
+      .screen {
+        min-height: calc(92dvh - 52px);
+        overflow: hidden;
+      }
+
+      .stage {
+        padding: 18px 14px;
       }
 
       .perk-grid {
@@ -799,6 +824,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding-right: 0;
+        margin-top: 18px;
       }
 
       .select-sub {
@@ -807,11 +833,24 @@
 
       .loading-box {
         grid-template-columns: 1fr;
-        min-height: 230px;
+        min-height: 220px;
+      }
+
+      .loading-wrap {
+        width: 100%;
       }
 
       .hud {
-        padding-right: 68px;
+        padding-right: 60px;
+      }
+
+      .final-center {
+        padding: 2vh 0;
+      }
+
+      .form-link-btn {
+        width: 100%;
+        max-width: 320px;
       }
     }
 
@@ -823,6 +862,7 @@
         animation-duration: .001ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -832,7 +872,6 @@
   <div class="app">
     <div class="frame">
       <div class="screen">
-
         <div class="logo-wrap">
           <div class="logo-box">
             <img src="logo.png" alt="SSA Logo" onerror="this.style.display='none'">
@@ -862,8 +901,9 @@
             <div class="medium">ARE YOU READY?</div>
 
             <div class="yesno" id="startChoices">
-              <div class="choice selected" data-choice="0">YES<span class="pointer">◀</span></div>
-              <div class="choice" data-choice="1">NO</div>
+              <div class="choice selected" data-choice="0" tabindex="0" role="button" aria-label="Yes">YES<span
+                  class="pointer">◀</span></div>
+              <div class="choice" data-choice="1" tabindex="0" role="button" aria-label="No">NO</div>
             </div>
 
             <div class="medium" id="startMessage">SELECT AN OPTION</div>
@@ -1001,6 +1041,7 @@
     let countdownTimer = null;
     let audioCtx = null;
     let soundReady = false;
+    let hasStarted = false;
 
     function unlockAudio() {
       if (soundReady) return;
@@ -1009,6 +1050,13 @@
         soundReady = true;
       } catch (e) {
         soundReady = false;
+      }
+    }
+
+    function markInteraction() {
+      unlockAudio();
+      if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume().catch(() => { });
       }
     }
 
@@ -1036,13 +1084,17 @@
       tone(220, 0.10, "square", 0.025, 0.20);
     }
 
-    function sfxMove() {
-      tone(420, 0.05, "square", 0.02);
+    function sfxMove() { tone(420, 0.05, "square", 0.02); }
+    function sfxHover() { tone(340, 0.035, "square", 0.012); }
+
+    function sfxClick() {
+      tone(620, 0.04, "square", 0.02, 0.00);
+      tone(780, 0.05, "square", 0.018, 0.05);
     }
 
-    function sfxSelect() {
-      tone(520, 0.06, "square", 0.025, 0.00);
-      tone(660, 0.08, "square", 0.025, 0.07);
+    function sfxError() {
+      tone(180, 0.06, "sawtooth", 0.018, 0.00);
+      tone(120, 0.08, "sawtooth", 0.018, 0.08);
     }
 
     function sfxLoading() {
@@ -1055,6 +1107,12 @@
       tone(523.25, 0.08, "square", 0.03, 0.00);
       tone(659.25, 0.08, "square", 0.03, 0.10);
       tone(783.99, 0.12, "square", 0.03, 0.20);
+    }
+
+    function sfxRedirect() {
+      tone(880, 0.05, "square", 0.022, 0.00);
+      tone(988, 0.05, "square", 0.022, 0.06);
+      tone(1174.66, 0.08, "square", 0.022, 0.12);
     }
 
     function clearRedirects() {
@@ -1124,11 +1182,11 @@
     function confirmStartChoice() {
       if (!stages.start.classList.contains("active")) return;
 
-      unlockAudio();
+      markInteraction();
       const selected = startChoices[startChoice];
 
       if (startChoice === 0) {
-        sfxSelect();
+        sfxClick();
         startMessage.textContent = "LOADING PLAYER DATA...";
         selected.classList.remove("start-nope");
         void selected.offsetWidth;
@@ -1139,7 +1197,7 @@
           goToLoading();
         }, 380);
       } else {
-        sfxMove();
+        sfxError();
         startMessage.textContent = "EH DONT RUN... CHOOSE YES";
         selected.classList.remove("start-nope");
         void selected.offsetWidth;
@@ -1155,7 +1213,7 @@
     function startFinalRedirect() {
       clearRedirects();
       formLinkBtn.href = GOOGLE_FORM_URL;
-      finalStatus.textContent = "TAP OPEN GOOGLE FORM";
+      finalStatus.textContent = "OPEN GOOGLE FORM OR WAIT FOR AUTO REDIRECT";
       countdownWrap.style.display = "block";
 
       let seconds = 3;
@@ -1163,22 +1221,20 @@
 
       countdownTimer = setInterval(() => {
         seconds -= 1;
-        if (seconds <= 0) {
-          clearInterval(countdownTimer);
-          countdownEl.textContent = 0;
-        } else {
-          countdownEl.textContent = seconds;
-        }
+        countdownEl.textContent = Math.max(seconds, 0);
+        if (seconds <= 0) clearInterval(countdownTimer);
       }, 1000);
 
       redirectTimer = setTimeout(() => {
-        finalStatus.textContent = "TAP OPEN GOOGLE FORM";
+        sfxRedirect();
+        window.location.href = GOOGLE_FORM_URL;
       }, 3000);
     }
 
     function lockPerk(index) {
       setPerk(index);
-      sfxSelect();
+      markInteraction();
+      sfxClick();
       selectedPerkText.textContent = `PERK SELECTED // ${perkData[index].short}`;
 
       setTimeout(() => {
@@ -1190,8 +1246,27 @@
 
     startChoices.forEach((choice, index) => {
       choice.addEventListener("click", () => {
+        markInteraction();
         setStartChoice(index);
         confirmStartChoice();
+      });
+
+      choice.addEventListener("mouseenter", () => {
+        if (stages.start.classList.contains("active")) sfxHover();
+      });
+
+      choice.addEventListener("touchstart", () => {
+        markInteraction();
+        if (stages.start.classList.contains("active")) sfxHover();
+      }, { passive: true });
+
+      choice.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          markInteraction();
+          setStartChoice(index);
+          confirmStartChoice();
+        }
       });
     });
 
@@ -1199,18 +1274,28 @@
       const index = Number(card.dataset.index);
 
       card.addEventListener("click", () => {
+        markInteraction();
         lockPerk(index);
       });
 
       card.addEventListener("mouseenter", () => {
-        if (stages.select.classList.contains("active")) {
-          setPerk(index);
-        }
+        if (stages.select.classList.contains("active")) sfxHover();
       });
 
+      card.addEventListener("touchstart", () => {
+        markInteraction();
+        if (stages.select.classList.contains("active")) sfxHover();
+      }, { passive: true });
+
       card.addEventListener("focus", () => {
-        if (stages.select.classList.contains("active")) {
-          setPerk(index);
+        if (stages.select.classList.contains("active")) setPerk(index);
+      });
+
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          markInteraction();
+          lockPerk(index);
         }
       });
     });
@@ -1218,10 +1303,11 @@
     window.addEventListener("keydown", (e) => {
       if (stages.start.classList.contains("active")) {
         if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-          unlockAudio();
+          markInteraction();
           sfxMove();
           setStartChoice(startChoice === 0 ? 1 : 0);
         } else if (e.key === "Enter" || e.key === " ") {
+          markInteraction();
           confirmStartChoice();
         }
         return;
@@ -1230,10 +1316,15 @@
       if (!stages.select.classList.contains("active")) return;
 
       if (e.key === "ArrowRight") {
+        markInteraction();
+        sfxMove();
         setPerk((currentPerk + 1) % perkCards.length);
       } else if (e.key === "ArrowLeft") {
+        markInteraction();
+        sfxMove();
         setPerk((currentPerk - 1 + perkCards.length) % perkCards.length);
       } else if (e.key === "Enter" || e.key.toLowerCase() === "a") {
+        markInteraction();
         lockPerk(currentPerk);
       }
     });
@@ -1246,14 +1337,34 @@
       selectedPerkText.textContent = "PERK SELECTED // HANDS-ON EXPERIENCE";
       showStage("boot");
 
-      // Avoid forcing audio init on page load for mobile browsers.
+      unlockAudio();
+      sfxBoot();
 
       bootTimer = setTimeout(() => {
         showStage("start");
       }, 1700);
     }
 
-    window.addEventListener("load", startSequence, { once: true });
+    window.addEventListener("load", () => {
+      if (hasStarted) return;
+      hasStarted = true;
+      startSequence();
+    });
+
+    window.addEventListener("pointerdown", () => {
+      markInteraction();
+    }, { once: true });
+
+    window.addEventListener("touchstart", () => {
+      markInteraction();
+    }, { once: true, passive: true });
+
+    window.addEventListener("pageshow", (e) => {
+      if (e.persisted && !hasStarted) {
+        hasStarted = true;
+        startSequence();
+      }
+    });
   </script>
 </body>
 
