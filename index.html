@@ -49,10 +49,10 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* ─── APP SHELL ─── */
     .app {
       width: 100vw;
       min-height: 100dvh;
-      height: auto;
       display: grid;
       place-items: center;
       padding:
@@ -62,6 +62,7 @@
         linear-gradient(180deg, rgba(192, 192, 192, .52), var(--white) 28%, rgba(192, 192, 192, .32));
     }
 
+    /* ─── FRAME (outer bezel) ─── */
     .frame {
       width: min(94vw, 1100px);
       aspect-ratio: 4 / 3;
@@ -81,6 +82,7 @@
         inset 0 -4px 0 rgba(2, 2, 2, .08);
     }
 
+    /* ─── SCREEN (inner display) ─── */
     .screen {
       position: relative;
       width: 100%;
@@ -108,6 +110,7 @@
       opacity: .6;
     }
 
+    /* ─── LOGO ─── */
     .logo-wrap {
       position: absolute;
       top: 16px;
@@ -133,6 +136,8 @@
       display: block;
     }
 
+    /* ─── STAGES ─── */
+    /* Desktop: absolutely stacked, faded in/out */
     .stage {
       position: absolute;
       inset: 0;
@@ -150,6 +155,7 @@
       pointer-events: auto;
     }
 
+    /* ─── BACKGROUNDS ─── */
     .grid-bg {
       background:
         linear-gradient(rgba(2, 2, 2, .06) 1px, transparent 1px),
@@ -166,6 +172,7 @@
       background-size: 60px 60px, 60px 60px, 100% 100%;
     }
 
+    /* ─── HUD ─── */
     .hud {
       display: flex;
       justify-content: space-between;
@@ -198,6 +205,7 @@
       line-height: 1.9;
     }
 
+    /* ─── CENTER ZONE ─── */
     .center {
       flex: 1;
       display: grid;
@@ -252,6 +260,7 @@
       text-transform: uppercase;
     }
 
+    /* ─── ANIMATIONS ─── */
     .blink {
       animation: blink .82s steps(1, end) infinite;
     }
@@ -281,6 +290,7 @@
       opacity: .7;
     }
 
+    /* ─── YES / NO CHOICES ─── */
     .yesno {
       display: flex;
       justify-content: center;
@@ -299,13 +309,7 @@
       position: relative;
       padding: 12px 18px;
       cursor: pointer;
-      transition:
-        transform .14s ease,
-        opacity .14s linear,
-        background .14s linear,
-        color .14s linear,
-        box-shadow .14s linear,
-        border-color .14s linear;
+      transition: transform .14s ease, opacity .14s linear, background .14s linear, color .14s linear, box-shadow .14s linear, border-color .14s linear;
       opacity: .82;
       user-select: none;
       border: 3px solid rgba(0, 0, 174, .28);
@@ -324,9 +328,7 @@
       background: var(--blue);
       border-color: var(--blue);
       transform: translateY(-2px) scale(1.03);
-      box-shadow:
-        0 10px 24px rgba(0, 0, 174, .18),
-        inset 0 0 0 2px rgba(245, 241, 242, .18);
+      box-shadow: 0 10px 24px rgba(0, 0, 174, .18), inset 0 0 0 2px rgba(245, 241, 242, .18);
     }
 
     .pointer {
@@ -348,6 +350,7 @@
       animation: startNope .45s ease;
     }
 
+    /* ─── LOADING ─── */
     .loading-wrap {
       width: min(80%, 660px);
       margin: auto;
@@ -362,11 +365,8 @@
     .loading-box {
       border: 4px solid var(--silver);
       color: var(--dark);
-      background:
-        linear-gradient(180deg, rgba(245, 241, 242, .96), rgba(192, 192, 192, .20));
-      box-shadow:
-        0 12px 24px rgba(2, 2, 2, .08),
-        inset 0 0 0 2px rgba(255, 255, 255, .55);
+      background: linear-gradient(180deg, rgba(245, 241, 242, .96), rgba(192, 192, 192, .20));
+      box-shadow: 0 12px 24px rgba(2, 2, 2, .08), inset 0 0 0 2px rgba(255, 255, 255, .55);
     }
 
     .loading-top {
@@ -416,6 +416,7 @@
       box-shadow: 0 0 14px rgba(0, 0, 174, .24);
     }
 
+    /* ─── SELECT STAGE ─── */
     .title-row {
       display: flex;
       justify-content: space-between;
@@ -451,6 +452,7 @@
       opacity: .88;
     }
 
+    /* ─── PERK GRID ─── */
     .perk-grid {
       flex: 1;
       display: grid;
@@ -476,9 +478,7 @@
       user-select: none;
       position: relative;
       overflow: hidden;
-      box-shadow:
-        0 12px 28px rgba(2, 2, 2, .08),
-        inset 0 0 0 2px rgba(245, 241, 242, .20);
+      box-shadow: 0 12px 28px rgba(2, 2, 2, .08), inset 0 0 0 2px rgba(245, 241, 242, .20);
       outline: none;
     }
 
@@ -490,9 +490,7 @@
     .perk-card:nth-child(2) {
       background: linear-gradient(180deg, rgba(0, 0, 174, .92), rgba(0, 0, 174, .80));
       color: var(--white);
-      box-shadow:
-        0 16px 30px rgba(0, 0, 174, .18),
-        inset 0 0 0 2px rgba(245, 241, 242, .12);
+      box-shadow: 0 16px 30px rgba(0, 0, 174, .18), inset 0 0 0 2px rgba(245, 241, 242, .12);
     }
 
     .perk-card:nth-child(3) {
@@ -507,9 +505,7 @@
     .perk-card.selected {
       border-color: var(--blue);
       transform: translateY(-4px);
-      box-shadow:
-        0 18px 36px rgba(0, 0, 174, .18),
-        0 0 0 4px rgba(0, 0, 174, .10);
+      box-shadow: 0 18px 36px rgba(0, 0, 174, .18), 0 0 0 4px rgba(0, 0, 174, .10);
     }
 
     .perk-card.dim {
@@ -594,6 +590,7 @@
       margin-top: 12px;
     }
 
+    /* ─── FINAL STAGE ─── */
     .final-stage {
       justify-content: space-between;
       text-align: center;
@@ -677,93 +674,94 @@
       animation: blink .82s steps(1, end) infinite;
     }
 
+    /* ─── KEYFRAMES ─── */
     @keyframes blink {
 
       0%,
       49% {
-        opacity: 1;
+        opacity: 1
       }
 
       50%,
       100% {
-        opacity: 0;
+        opacity: 0
       }
     }
 
     @keyframes jitter {
       0% {
-        transform: translate(0, 0);
+        transform: translate(0, 0)
       }
 
       25% {
-        transform: translate(-1px, 0);
+        transform: translate(-1px, 0)
       }
 
       50% {
-        transform: translate(1px, 0);
+        transform: translate(1px, 0)
       }
 
       75% {
-        transform: translate(-1px, 1px);
+        transform: translate(-1px, 1px)
       }
 
       100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0)
       }
     }
 
     @keyframes nudge {
       from {
-        transform: translateX(0);
+        transform: translateX(0)
       }
 
       to {
-        transform: translateX(4px);
+        transform: translateX(4px)
       }
     }
 
     @keyframes startYesGo {
       0% {
-        transform: scale(1);
+        transform: scale(1)
       }
 
       45% {
-        transform: scale(1.08);
+        transform: scale(1.08)
       }
 
       100% {
         transform: scale(.96);
-        opacity: 0;
+        opacity: 0
       }
     }
 
     @keyframes startNope {
       0% {
-        transform: translateX(0);
+        transform: translateX(0)
       }
 
       20% {
-        transform: translateX(-6px);
+        transform: translateX(-6px)
       }
 
       40% {
-        transform: translateX(6px);
+        transform: translateX(6px)
       }
 
       60% {
-        transform: translateX(-4px);
+        transform: translateX(-4px)
       }
 
       80% {
-        transform: translateX(4px);
+        transform: translateX(4px)
       }
 
       100% {
-        transform: translateX(0);
+        transform: translateX(0)
       }
     }
 
-    /* ====================== 响应式修复 ====================== */
+    /* ─── TABLET ─── */
     @media (max-width: 900px) {
       .frame {
         width: min(96vw, 960px);
@@ -777,66 +775,166 @@
         min-width: 88px;
         min-height: 88px;
       }
-    }
 
-    /* 手机竖屏核心适配 */
-    @media (max-width: 767px) {
-      .app {
-        padding: 10px;
-        min-height: 100vh;
-      }
-
-      /* 手机取消固定比例，自动高度 */
-      .frame {
-        width: 100%;
-        aspect-ratio: auto;
-        min-height: calc(100vh - 20px);
-        max-height: none;
-        border-radius: 20px;
-        padding: 10px;
-      }
-
-      .screen {
-        min-height: calc(100vh - 40px);
-        overflow-y: auto;
-        overflow-x: hidden;
-      }
-
-      /* 手机页面内容正常流式布局 */
-      .stage {
-        position: relative;
-        inset: auto;
-        padding: 16px;
-        min-height: calc(100vh - 40px);
-        height: auto;
-      }
-
-      /* 手机LOGO固定右上角 */
-      .logo-wrap {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 999;
+      .title-row {
+        padding-right: 74px;
       }
 
       .logo-box {
-        width: 40px;
-        height: 40px;
+        width: 54px;
+        height: 54px;
       }
 
-      /* 手机三列卡片 → 单列 */
+      .hud {
+        padding-right: 74px;
+      }
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 720px) {
+
+      /* App shell: allow natural height, align to top */
+      .app {
+        padding:
+          calc(10px + var(--safe-top)) calc(10px + var(--safe-right)) calc(10px + var(--safe-bottom)) calc(10px + var(--safe-left));
+        place-items: start center;
+        min-height: 100dvh;
+        height: auto;
+      }
+
+      /* Frame: no fixed aspect ratio, full width, auto height */
+      .frame {
+        width: 100%;
+        aspect-ratio: unset;
+        height: auto;
+        min-height: unset;
+        max-height: unset;
+        padding: 10px;
+        border-radius: 20px;
+      }
+
+      /* Screen: also auto height */
+      .screen {
+        width: 100%;
+        height: auto;
+        min-height: unset;
+        overflow: visible;
+        border-radius: 14px;
+      }
+
+      /* Logo: fixed so it stays visible while scrolling */
+      .logo-wrap {
+        position: fixed;
+        top: calc(20px + var(--safe-top));
+        right: calc(16px + var(--safe-right));
+        z-index: 200;
+      }
+
+      .logo-box {
+        width: 44px;
+        height: 44px;
+      }
+
+      /*
+       * Mobile stages: switch from absolute/opacity to display:none/flex.
+       * Each active stage renders in normal flow so the screen grows to fit.
+       */
+      .stage {
+        position: relative;
+        inset: auto;
+        opacity: 1;
+        pointer-events: none;
+        display: none;
+        /* hidden by default */
+        padding: 16px 14px 28px;
+        min-height: calc(100dvh - 40px - var(--safe-top) - var(--safe-bottom));
+      }
+
+      .stage.active {
+        display: flex;
+        /* show active stage */
+        pointer-events: auto;
+      }
+
+      /* HUD */
+      .hud {
+        padding-right: 56px;
+        /* room for fixed logo */
+        min-height: 36px;
+      }
+
+      .score {
+        font-size: clamp(10px, 2.8vw, 13px);
+      }
+
+      .hud-right {
+        font-size: clamp(9px, 2.4vw, 11px);
+      }
+
+      /* Start / boot center */
+      .center {
+        padding: 3vh 0 2vh;
+        gap: 14px;
+      }
+
+      .start-big {
+        font-size: clamp(56px, 15vw, 96px);
+      }
+
+      .yesno {
+        gap: clamp(18px, 5vw, 40px);
+      }
+
+      .choice {
+        font-size: clamp(16px, 4.5vw, 24px);
+        padding: 10px 16px;
+      }
+
+      /* Loading */
+      .loading-wrap {
+        width: 100%;
+        padding: 0;
+      }
+
+      .loading-box {
+        grid-template-columns: 1fr;
+        min-height: 160px;
+        padding: 20px 16px;
+      }
+
+      /* Select stage */
+      .title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 56px;
+        margin-top: 12px;
+        margin-bottom: 14px;
+        gap: 4px;
+      }
+
+      .select-title {
+        font-size: clamp(20px, 5.5vw, 28px);
+      }
+
+      .select-sub {
+        text-align: left;
+        font-size: clamp(9px, 2.5vw, 12px);
+      }
+
+      /* Perk grid: single column, horizontal card layout */
       .perk-grid {
         grid-template-columns: 1fr;
+        flex: 0 0 auto;
         gap: 12px;
       }
 
-      /* 手机卡片改为横向排版 */
       .perk-card {
         flex-direction: row;
         min-height: unset;
-        padding: 12px;
+        padding: 14px 12px;
+        gap: 14px;
+        align-items: center;
         text-align: left;
-        gap: 12px;
         border-radius: 14px;
       }
 
@@ -845,71 +943,84 @@
       }
 
       .perk-art {
-        padding: 0;
+        flex: 0 0 auto;
         width: auto;
+        padding: 0;
       }
 
       .pixel-badge {
-        min-width: 60px;
-        min-height: 60px;
+        min-width: 64px;
+        min-height: 64px;
+        padding: 10px 8px;
         font-size: 16px;
       }
 
-      /* 标题栏手机单列 */
-      .title-row {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-right: 50px;
-        gap: 6px;
-        margin-top: 12px;
+      .perk-name {
+        font-size: clamp(11px, 3.2vw, 14px);
+        line-height: 1.7;
       }
 
-      .select-sub {
-        text-align: left;
+      .info-line {
+        margin-top: 14px;
+        font-size: clamp(10px, 2.8vw, 13px);
       }
 
-      /* HUD 手机适配 */
-      .hud {
-        padding-right: 50px;
+      .action-line {
+        margin-top: 8px;
+        font-size: clamp(10px, 2.8vw, 13px);
+        padding-bottom: 8px;
       }
 
-      /* 加载界面手机单列 */
-      .loading-box {
-        grid-template-columns: 1fr;
-        min-height: 200px;
+      /* Final stage */
+      .final-center {
+        padding: 3vh 0 2vh;
+        gap: 14px;
       }
 
-      .loading-wrap {
+      .final-title {
+        font-size: clamp(26px, 7.5vw, 42px);
+      }
+
+      .final-picked {
+        font-size: clamp(10px, 2.8vw, 14px);
+      }
+
+      .final-cta {
+        font-size: clamp(14px, 4vw, 22px);
+      }
+
+      #finalStatus {
+        font-size: clamp(11px, 3vw, 15px);
+      }
+
+      .form-link-btn {
         width: 100%;
+        max-width: 320px;
+        text-align: center;
+        padding: 12px 18px;
       }
     }
 
-    /* 超小屏手机 */
-    @media (max-width: 380px) {
+    /* ─── EXTRA SMALL: short landscape phones ─── */
+    @media (max-width: 720px) and (max-height: 600px) {
       .start-big {
-        font-size: clamp(40px, 12vw, 60px);
+        font-size: clamp(36px, 10vw, 60px);
+      }
+
+      .center {
+        padding: 1vh 0;
+        gap: 10px;
       }
 
       .pixel-badge {
         min-width: 52px;
         min-height: 52px;
-      }
-    }
-
-    /* 横屏手机 */
-    @media (max-width: 900px) and (orientation: landscape) {
-      .frame {
-        aspect-ratio: auto;
-        min-height: 100vh;
+        font-size: 14px;
       }
 
-      .perk-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .perk-card {
-        flex-direction: column;
-        min-height: 220px;
+      .final-center {
+        padding: 1vh 0;
+        gap: 10px;
       }
     }
 
@@ -921,6 +1032,7 @@
         animation-duration: .001ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -930,12 +1042,14 @@
   <div class="app">
     <div class="frame">
       <div class="screen">
+
         <div class="logo-wrap">
           <div class="logo-box">
             <img src="logo.png" alt="SSA Logo" onerror="this.style.display='none'">
           </div>
         </div>
 
+        <!-- BOOT -->
         <section class="stage grid-bg active" id="stage-boot">
           <div class="hud">
             <div class="score">HI-SCORE<br>123000</div>
@@ -948,26 +1062,25 @@
           </div>
         </section>
 
+        <!-- START -->
         <section class="stage grid-bg" id="stage-start">
           <div class="hud">
             <div class="score">HI-SCORE<br>123000</div>
             <div class="hud-right">PLAYER 1<br>READY</div>
           </div>
-
           <div class="center">
             <div class="big start-big" id="startTitle">START</div>
             <div class="medium">ARE YOU READY?</div>
-
             <div class="yesno" id="startChoices">
               <div class="choice selected" data-choice="0" tabindex="0" role="button" aria-label="Yes">YES<span
                   class="pointer">◀</span></div>
               <div class="choice" data-choice="1" tabindex="0" role="button" aria-label="No">NO</div>
             </div>
-
             <div class="medium" id="startMessage">SELECT AN OPTION</div>
           </div>
         </section>
 
+        <!-- LOADING -->
         <section class="stage plain-bg" id="stage-loading">
           <div class="loading-wrap">
             <div class="loading-top">
@@ -988,6 +1101,7 @@
           </div>
         </section>
 
+        <!-- SELECT -->
         <section class="stage grid-bg" id="stage-select">
           <div class="title-row">
             <div class="select-title">UNLOCK YOUR PERKS</div>
@@ -1027,27 +1141,26 @@
           <div class="action-line">SELECT TO CONTINUE</div>
         </section>
 
+        <!-- FINAL -->
         <section class="stage grid-bg final-stage" id="stage-final">
           <div class="hud">
             <div class="score">MISSION CLEAR</div>
           </div>
-
           <div class="final-center">
             <div class="final-title">MISSION ACCEPTED</div>
             <div class="final-picked" id="selectedPerkText">PERK SELECTED // HANDS-ON EXPERIENCE</div>
             <div class="final-cta">GOOGLE FORM UNLOCKED<span class="cursor">_</span></div>
             <div class="medium" id="finalStatus">OPEN GOOGLE FORM OR WAIT FOR AUTO REDIRECT</div>
-
             <a id="formLinkBtn" class="form-link-btn" href="https://forms.gle/BZii4wpK4ABPotxP8" target="_blank"
               rel="noopener noreferrer">
               OPEN GOOGLE FORM
             </a>
-
             <div class="final-note" id="countdownWrap">
               AUTO REDIRECT IN <span class="final-countdown" id="countdown">3</span>
             </div>
           </div>
         </section>
+
       </div>
     </div>
   </div>
@@ -1075,46 +1188,26 @@
     const finalStatus = document.getElementById("finalStatus");
 
     const perkData = [
-      {
-        short: "HANDS-ON EXPERIENCE",
-        copy: "REAL EVENTS // REAL EXPERIENCE"
-      },
-      {
-        short: "MEANINGFUL CONNECTIONS",
-        copy: "MEET PEOPLE // BUILD YOUR NETWORK"
-      },
-      {
-        short: "FUTURE GROWTH",
-        copy: "LEVEL UP YOUR SKILLS AND CONFIDENCE"
-      }
+      { short: "HANDS-ON EXPERIENCE", copy: "REAL EVENTS // REAL EXPERIENCE" },
+      { short: "MEANINGFUL CONNECTIONS", copy: "MEET PEOPLE // BUILD YOUR NETWORK" },
+      { short: "FUTURE GROWTH", copy: "LEVEL UP YOUR SKILLS AND CONFIDENCE" }
     ];
 
-    let currentPerk = 0;
-    let startChoice = 0;
-    let loadingInterval = null;
-    let bootTimer = null;
-    let loadingTimer = null;
-    let redirectTimer = null;
-    let countdownTimer = null;
-    let audioCtx = null;
-    let soundReady = false;
-    let hasStarted = false;
+    let currentPerk = 0, startChoice = 0;
+    let loadingInterval = null, bootTimer = null, loadingTimer = null;
+    let redirectTimer = null, countdownTimer = null;
+    let audioCtx = null, soundReady = false, hasStarted = false;
 
+    /* ─── AUDIO ─── */
     function unlockAudio() {
       if (soundReady) return;
-      try {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        soundReady = true;
-      } catch (e) {
-        soundReady = false;
-      }
+      try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); soundReady = true; }
+      catch (e) { soundReady = false; }
     }
 
     function markInteraction() {
       unlockAudio();
-      if (audioCtx && audioCtx.state === "suspended") {
-        audioCtx.resume().catch(() => { });
-      }
+      if (audioCtx && audioCtx.state === "suspended") audioCtx.resume().catch(() => { });
     }
 
     function tone(freq, duration, type = "square", volume = 0.03, delay = 0) {
@@ -1122,79 +1215,40 @@
       const now = audioCtx.currentTime + delay;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-
       osc.type = type;
       osc.frequency.setValueAtTime(freq, now);
       gain.gain.setValueAtTime(0.0001, now);
       gain.gain.exponentialRampToValueAtTime(volume, now + 0.01);
       gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.start(now);
       osc.stop(now + duration + 0.02);
     }
 
-    function sfxBoot() {
-      tone(140, 0.08, "square", 0.025, 0.00);
-      tone(180, 0.08, "square", 0.025, 0.10);
-      tone(220, 0.10, "square", 0.025, 0.20);
-    }
+    function sfxBoot() { tone(140, .08, "square", .025, .00); tone(180, .08, "square", .025, .10); tone(220, .10, "square", .025, .20); }
+    function sfxMove() { tone(420, .05, "square", .02); }
+    function sfxHover() { tone(340, .035, "square", .012); }
+    function sfxClick() { tone(620, .04, "square", .02, .00); tone(780, .05, "square", .018, .05); }
+    function sfxError() { tone(180, .06, "sawtooth", .018, .00); tone(120, .08, "sawtooth", .018, .08); }
+    function sfxLoading() { tone(300, .04, "square", .015, .00); tone(360, .04, "square", .015, .08); tone(420, .04, "square", .015, .16); }
+    function sfxWin() { tone(523.25, .08, "square", .03, .00); tone(659.25, .08, "square", .03, .10); tone(783.99, .12, "square", .03, .20); }
+    function sfxRedirect() { tone(880, .05, "square", .022, .00); tone(988, .05, "square", .022, .06); tone(1174.66, .08, "square", .022, .12); }
 
-    function sfxMove() { tone(420, 0.05, "square", 0.02); }
-    function sfxHover() { tone(340, 0.035, "square", 0.012); }
+    /* ─── TIMERS ─── */
+    function clearRedirects() { clearTimeout(redirectTimer); clearInterval(countdownTimer); }
+    function clearTimers() { clearInterval(loadingInterval); clearTimeout(bootTimer); clearTimeout(loadingTimer); clearRedirects(); }
 
-    function sfxClick() {
-      tone(620, 0.04, "square", 0.02, 0.00);
-      tone(780, 0.05, "square", 0.018, 0.05);
-    }
-
-    function sfxError() {
-      tone(180, 0.06, "sawtooth", 0.018, 0.00);
-      tone(120, 0.08, "sawtooth", 0.018, 0.08);
-    }
-
-    function sfxLoading() {
-      tone(300, 0.04, "square", 0.015, 0.00);
-      tone(360, 0.04, "square", 0.015, 0.08);
-      tone(420, 0.04, "square", 0.015, 0.16);
-    }
-
-    function sfxWin() {
-      tone(523.25, 0.08, "square", 0.03, 0.00);
-      tone(659.25, 0.08, "square", 0.03, 0.10);
-      tone(783.99, 0.12, "square", 0.03, 0.20);
-    }
-
-    function sfxRedirect() {
-      tone(880, 0.05, "square", 0.022, 0.00);
-      tone(988, 0.05, "square", 0.022, 0.06);
-      tone(1174.66, 0.08, "square", 0.022, 0.12);
-    }
-
-    function clearRedirects() {
-      clearTimeout(redirectTimer);
-      clearInterval(countdownTimer);
-    }
-
-    function clearTimers() {
-      clearInterval(loadingInterval);
-      clearTimeout(bootTimer);
-      clearTimeout(loadingTimer);
-      clearRedirects();
-    }
-
+    /* ─── STAGE SWITCHING ─── */
     function showStage(name) {
-      Object.values(stages).forEach((stage) => stage.classList.remove("active"));
+      Object.values(stages).forEach(s => s.classList.remove("active"));
       stages[name].classList.add("active");
       window.scrollTo(0, 0);
     }
 
+    /* ─── PERK SELECTION ─── */
     function setPerk(index) {
-      if (currentPerk !== index && stages.select.classList.contains("active")) {
-        sfxMove();
-      }
-
+      if (currentPerk !== index && stages.select.classList.contains("active")) sfxMove();
       currentPerk = index;
       perkCards.forEach((card, i) => {
         card.classList.remove("selected", "dim");
@@ -1204,32 +1258,25 @@
       perkInfo.textContent = perkData[index].copy;
     }
 
+    /* ─── START CHOICE ─── */
     function setStartChoice(index) {
       startChoice = index;
-      startChoices.forEach((choice) => choice.classList.remove("selected"));
+      startChoices.forEach(c => c.classList.remove("selected"));
       startChoices[index].classList.add("selected");
       startMessage.textContent = index === 0 ? "YES // LETS GO" : "NO // YOU SURE?";
     }
 
     function goToLoading() {
       if (!stages.start.classList.contains("active")) return;
-
       showStage("loading");
       sfxLoading();
-
       let idx = 0;
-      loadingDots.forEach((dot, i) => {
-        dot.classList.toggle("on", i === 0);
-      });
-
+      loadingDots.forEach((dot, i) => dot.classList.toggle("on", i === 0));
       clearInterval(loadingInterval);
       loadingInterval = setInterval(() => {
-        loadingDots.forEach((dot, i) => {
-          dot.classList.toggle("on", i <= idx);
-        });
+        loadingDots.forEach((dot, i) => dot.classList.toggle("on", i <= idx));
         idx = (idx + 1) % loadingDots.length;
       }, 170);
-
       loadingTimer = setTimeout(() => {
         clearInterval(loadingInterval);
         showStage("select");
@@ -1239,50 +1286,38 @@
 
     function confirmStartChoice() {
       if (!stages.start.classList.contains("active")) return;
-
       markInteraction();
       const selected = startChoices[startChoice];
-
       if (startChoice === 0) {
         sfxClick();
         startMessage.textContent = "LOADING PLAYER DATA...";
         selected.classList.remove("start-nope");
         void selected.offsetWidth;
         selected.classList.add("start-yes-go");
-
-        setTimeout(() => {
-          selected.classList.remove("start-yes-go");
-          goToLoading();
-        }, 380);
+        setTimeout(() => { selected.classList.remove("start-yes-go"); goToLoading(); }, 380);
       } else {
         sfxError();
         startMessage.textContent = "EH DONT RUN... CHOOSE YES";
         selected.classList.remove("start-nope");
         void selected.offsetWidth;
         selected.classList.add("start-nope");
-
-        setTimeout(() => {
-          selected.classList.remove("start-nope");
-          setStartChoice(0);
-        }, 520);
+        setTimeout(() => { selected.classList.remove("start-nope"); setStartChoice(0); }, 520);
       }
     }
 
+    /* ─── FINAL / REDIRECT ─── */
     function startFinalRedirect() {
       clearRedirects();
       formLinkBtn.href = GOOGLE_FORM_URL;
       finalStatus.textContent = "OPEN GOOGLE FORM OR WAIT FOR AUTO REDIRECT";
       countdownWrap.style.display = "block";
-
       let seconds = 3;
       countdownEl.textContent = seconds;
-
       countdownTimer = setInterval(() => {
         seconds -= 1;
         countdownEl.textContent = Math.max(seconds, 0);
         if (seconds <= 0) clearInterval(countdownTimer);
       }, 1000);
-
       redirectTimer = setTimeout(() => {
         sfxRedirect();
         window.location.href = GOOGLE_FORM_URL;
@@ -1294,99 +1329,43 @@
       markInteraction();
       sfxClick();
       selectedPerkText.textContent = `PERK SELECTED // ${perkData[index].short}`;
-
-      setTimeout(() => {
-        showStage("final");
-        sfxWin();
-        startFinalRedirect();
-      }, 260);
+      setTimeout(() => { showStage("final"); sfxWin(); startFinalRedirect(); }, 260);
     }
 
+    /* ─── EVENT LISTENERS ─── */
     startChoices.forEach((choice, index) => {
-      choice.addEventListener("click", () => {
-        markInteraction();
-        setStartChoice(index);
-        confirmStartChoice();
-      });
-
-      choice.addEventListener("mouseenter", () => {
-        if (stages.start.classList.contains("active")) sfxHover();
-      });
-
-      choice.addEventListener("touchstart", () => {
-        markInteraction();
-        if (stages.start.classList.contains("active")) sfxHover();
-      }, { passive: true });
-
-      choice.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          markInteraction();
-          setStartChoice(index);
-          confirmStartChoice();
-        }
+      choice.addEventListener("click", () => { markInteraction(); setStartChoice(index); confirmStartChoice(); });
+      choice.addEventListener("mouseenter", () => { if (stages.start.classList.contains("active")) sfxHover(); });
+      choice.addEventListener("touchstart", () => { markInteraction(); if (stages.start.classList.contains("active")) sfxHover(); }, { passive: true });
+      choice.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); markInteraction(); setStartChoice(index); confirmStartChoice(); }
       });
     });
 
-    perkCards.forEach((card) => {
+    perkCards.forEach(card => {
       const index = Number(card.dataset.index);
-
-      card.addEventListener("click", () => {
-        markInteraction();
-        lockPerk(index);
-      });
-
-      card.addEventListener("mouseenter", () => {
-        if (stages.select.classList.contains("active")) sfxHover();
-      });
-
-      card.addEventListener("touchstart", () => {
-        markInteraction();
-        if (stages.select.classList.contains("active")) sfxHover();
-      }, { passive: true });
-
-      card.addEventListener("focus", () => {
-        if (stages.select.classList.contains("active")) setPerk(index);
-      });
-
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          markInteraction();
-          lockPerk(index);
-        }
+      card.addEventListener("click", () => { markInteraction(); lockPerk(index); });
+      card.addEventListener("mouseenter", () => { if (stages.select.classList.contains("active")) sfxHover(); });
+      card.addEventListener("touchstart", () => { markInteraction(); if (stages.select.classList.contains("active")) sfxHover(); }, { passive: true });
+      card.addEventListener("focus", () => { if (stages.select.classList.contains("active")) setPerk(index); });
+      card.addEventListener("keydown", e => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); markInteraction(); lockPerk(index); }
       });
     });
 
-    window.addEventListener("keydown", (e) => {
+    window.addEventListener("keydown", e => {
       if (stages.start.classList.contains("active")) {
-        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-          markInteraction();
-          sfxMove();
-          setStartChoice(startChoice === 0 ? 1 : 0);
-        } else if (e.key === "Enter" || e.key === " ") {
-          markInteraction();
-          confirmStartChoice();
-        }
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") { markInteraction(); sfxMove(); setStartChoice(startChoice === 0 ? 1 : 0); }
+        else if (e.key === "Enter" || e.key === " ") { markInteraction(); confirmStartChoice(); }
         return;
       }
-
       if (!stages.select.classList.contains("active")) return;
-
-      if (e.key === "ArrowRight") {
-        markInteraction();
-        sfxMove();
-        setPerk((currentPerk + 1) % perkCards.length);
-      } else if (e.key === "ArrowLeft") {
-        markInteraction();
-        sfxMove();
-        setPerk((currentPerk - 1 + perkCards.length) % perkCards.length);
-      } else if (e.key === "Enter" || e.key.toLowerCase() === "a") {
-        markInteraction();
-        lockPerk(currentPerk);
-      }
+      if (e.key === "ArrowRight") { markInteraction(); sfxMove(); setPerk((currentPerk + 1) % perkCards.length); }
+      else if (e.key === "ArrowLeft") { markInteraction(); sfxMove(); setPerk((currentPerk - 1 + perkCards.length) % perkCards.length); }
+      else if (e.key === "Enter" || e.key.toLowerCase() === "a") { markInteraction(); lockPerk(currentPerk); }
     });
 
+    /* ─── BOOT SEQUENCE ─── */
     function startSequence() {
       clearTimers();
       currentPerk = 0;
@@ -1394,35 +1373,15 @@
       setStartChoice(0);
       selectedPerkText.textContent = "PERK SELECTED // HANDS-ON EXPERIENCE";
       showStage("boot");
-
       unlockAudio();
       sfxBoot();
-
-      bootTimer = setTimeout(() => {
-        showStage("start");
-      }, 1700);
+      bootTimer = setTimeout(() => showStage("start"), 1700);
     }
 
-    window.addEventListener("load", () => {
-      if (hasStarted) return;
-      hasStarted = true;
-      startSequence();
-    });
-
-    window.addEventListener("pointerdown", () => {
-      markInteraction();
-    }, { once: true });
-
-    window.addEventListener("touchstart", () => {
-      markInteraction();
-    }, { once: true, passive: true });
-
-    window.addEventListener("pageshow", (e) => {
-      if (e.persisted && !hasStarted) {
-        hasStarted = true;
-        startSequence();
-      }
-    });
+    window.addEventListener("load", () => { if (hasStarted) return; hasStarted = true; startSequence(); });
+    window.addEventListener("pointerdown", () => markInteraction(), { once: true });
+    window.addEventListener("touchstart", () => markInteraction(), { once: true, passive: true });
+    window.addEventListener("pageshow", e => { if (e.persisted && !hasStarted) { hasStarted = true; startSequence(); } });
   </script>
 </body>
 
